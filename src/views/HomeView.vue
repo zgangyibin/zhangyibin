@@ -1,18 +1,28 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <my-head title="购物车案例" background="#1d7bff"></my-head>
+    <my-good></my-good>
+
+    <my-foot></my-foot>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
 
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+import MyHead from '@/components/MyHead.vue'
+import MyGood from '@/components/MyGood.vue'
+import MyCount from '@/components/MyCount.vue'
+import MyFoot from '@/components/MyFoot.vue'
+  export default {
+  components: { MyHead, MyGood, MyCount, MyFoot },
+  async created(){
+    let{ data:res }= await this.$http.get("/api/cart");
+    console.log(res)
   }
-}
+    
+  }
 </script>
+
+<style lang="less" scoped>
+
+</style>
