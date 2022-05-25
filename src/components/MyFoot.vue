@@ -1,22 +1,52 @@
 <template>
     <div class="my-foot">
         <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="form-check-input" id="footercheckbox">
+              <input type="checkbox" class="form-check-input" v-model="isAll" id="footercheckbox">
               <label for="footercheckbox" class="custom-control-label">全选</label>
         </div>
         <!-- 合计 -->
         <div>
             <span>合计</span>
-            <span class="price">￥0</span>
+            <span class="price">￥{{allPrice}}</span>
         </div>
         <!-- 结算 -->
-        <button type="button" class="footer-btn btn btn-primary">结算(0</button>
+        <button type="button" class="footer-btn btn btn-primary">结算({{allCount}})</button>
     </div>
 </template>
 
 <script>
     export default {
-        
+        props:{
+            list:Array,
+        },
+        computed:{
+            isAll:{
+                set(val){
+                    //同步到每一个小选框
+                    this.$emit("changeAll",val);
+                },
+                get(){
+                    return this.list.every(item=>item.goods_state === true)
+                }
+            },
+            allCount(){
+                //总数量
+                return this.list.reduce((sum,item)=>{
+                    if(item.goods_state == true){
+                        sum += item.goods_count
+                    }
+                    return sum;
+                },0)
+            },
+            allPrice(){
+                return this.list.reduce((sum,item)=>{
+                    if(item.goods_state == true){
+                        sum += item.goods_count * item.goods_price;
+                    }
+                    return sum;
+                },0)
+            }
+        }
     }
 </script>
 

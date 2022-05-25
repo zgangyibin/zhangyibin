@@ -1,8 +1,8 @@
 <template>
     <div class="my-counter">
-        <button type="buttom" class="btn btn-light">+</button>
+        <button @click="obj.goods_count++" type="buttom" class="btn btn-light">+</button>
         <input type="number" v-model="obj.goods_count" class="form-control inp">
-        <button type="buttom" class="btn btn-light">-</button>
+        <button :disabled="obj.goods_count == 1" @click="obj.goods_count > 1 && obj.goods_count--" type="buttom" class="btn btn-light">-</button>
     </div>
 </template>
 
@@ -10,7 +10,17 @@
     export default {
         props:{
             obj:Object,
-        }
+        },
+        watch:{
+            obj:{
+                deep:true,
+                handler(){
+                    if(this.obj.goods_count < 1){
+                        this.obj.goods_count = 1;
+                    }
+                }
+            }
+        },
     }
 </script>
 

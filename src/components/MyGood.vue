@@ -1,7 +1,7 @@
 <template>
     <div class="my-good-item">
         <div class="left">
-            <div class="custom-control custom-checkbox">
+            <div class="left-inp custom-control custom-checkbox">
                 <input type="checkbox" v-model="gObj.goods_state" class="custom-control-input" :id="gObj.id"/>
                 <label :for="gObj.id" class="custom-control-label"></label>
                 <img :src="gObj.goods_img" alt="">
@@ -33,11 +33,17 @@ import MyCount from './MyCount.vue'
 .my-good-item {
     display: flex;
     padding: 10px;
+    padding-top:  50px;
     border-bottom: 1px solid #ccc;
     .left {
+        .left-inp{
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
         img {
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             margin-right: 8px;
             border-radius: 10px;
 

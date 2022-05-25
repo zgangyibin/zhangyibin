@@ -27,11 +27,11 @@
     text-align: center;
     background-color: #1d7bff;
     color: #fff;
-    // position: fixed;
-    // top: 0;
-    // left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    // z-index: 2;
+    z-index: 2;
 
 }
 </style>
