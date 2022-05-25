@@ -2,16 +2,16 @@
     <div class="my-good-item">
         <div class="left">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id='input'/>
-                <label for="input"></label>
-                <img src="../assets/logo.png" alt="">
+                <input type="checkbox" v-model="gObj.goods_state" class="custom-control-input" :id="gObj.id"/>
+                <label :for="gObj.id" class="custom-control-label"></label>
+                <img :src="gObj.goods_img" alt="">
             </div>
         </div>
         <div class="right">
-            <div class="top">商品名字</div>
+            <div class="top">{{gObj.goods_name}}</div>
             <div class="bottom">
-                 <div class="price">￥100</div>
-                <my-count></my-count>
+                 <div class="price">￥{{gObj.goods_price}}</div>
+                <my-count :obj="gObj"></my-count>
             </div>
            
         </div>
@@ -22,6 +22,9 @@
 import MyCount from './MyCount.vue'
     export default {
   components: { MyCount },
+  props:{
+      gObj :Object,
+  }
         
     }
 </script>
